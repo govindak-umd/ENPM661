@@ -10,9 +10,6 @@
 # In[1]:
 
 
-# github repo:
-
-
 # In[2]:
 
 
