@@ -79,7 +79,7 @@ Enter the radius of the robot:  1
 Enter the clearance of the robot: 1
 ##############################################################################################
 
-was around 2050 seconds (~33 minutes).
+was around 1648 seconds (~28 minutes).
 
 Both codes takes a few minutes to solve (subject to the system specifications), and then output 
 the following:
