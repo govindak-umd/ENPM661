@@ -1,7 +1,16 @@
 README File
 _________________________________________________________________________________________
 
-Project 3 Phase 2 - ENPM 661 - Planning for Autonomous Robotics
+				Project 3 | Phase 2 | ENPM 661 | Planning for Autonomous Robots |
+
+						SUBMISSION : March 20, 2020
+
+--------------------------------------------------%%-------------------------------------------
+GITHUB: https://github.com/govindak-umd/ENPM661/tree/master/Project%203/Project%203%20Phase%202
+YOUTUBE: https://www.youtube.com/watch?v=VBzvzb2vaYg&feature=emb_logo
+--------------------------------------------------%%-------------------------------------------
+
+ A* Algorithm for Rigid Robot with Obstacles | Govind Ajith Kumar & Rajeshwar NS
 _________________________________________________________________________________________
 Authors: 
 
@@ -53,18 +62,45 @@ Clearence = Clearance of the robot
 
 
 ---------------------------------------------------------------------------------------------
+Time for solution for the following inputs:
+##############################################################################################
+Enter the x coordinate of the start:  50
 
-Both codes takes a few minutes to solve (subject to the leptop specifications), and then output 
+Enter the y coordinate of the start:  30
+
+Enter the Orientation at start (enter in multiples of 30 degreees and less that 360 degrees), :  60
+
+Enter the x coordinate of the goal:  150
+
+Enter the y coordinate of the goal:  150
+
+Enter the radius of the robot:  1
+
+Enter the clearance of the robot: 1
+##############################################################################################
+
+was around 2050 seconds (~33 minutes).
+
+Both codes takes a few minutes to solve (subject to the system specifications), and then output 
 the following:
 
->After Reaching the goal, the backtracking will commence.
+##After Reaching the goal, the backtracking will commence.
 
-> Once the backtracking is complete the following sets of outputs are given out.
+## Once the backtracking is complete the following sets of outputs are given out:
 
-> Image of the obstacles
+> Image of the obstacles (OpenCV)
 
-> The path backtracked by the code.
+> Animation showing the visited nodes and the backtracked path (using pygame)
 
+> Graph plot showing path of solution (MatplotLib)
+
+> Image of the visited nodes (OpenCV)
+
+> Image of backtracked path (OpenCV)
+
+> Graph plot showing children direction for each parent (MatplotLib)
+
+> Zoomed in version of the quivers generated (MatplotLib)
 
 ---------------------------------------------------------------------------------------------
 
