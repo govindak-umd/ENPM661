@@ -1,6 +1,20 @@
 README File
+_________________________________________________________________________________________
+
+				Project 3 | Phase 2 | ENPM 661 | Planning for Autonomous Robots |
+
+						SUBMISSION : March 20, 2020
+
+GITHUB: https://github.com/govindak-umd/ENPM661/tree/master/Project%203/Project%203%20Phase%202
+YOUTUBE: https://www.youtube.com/watch?v=VBzvzb2vaYg&feature=emb_log
+
 
 ![](Images/backtracked_img.jpg)
+![](Images/visited_img.jpg)
+![](Images/zoomed_vector_map.png)
+![](Images/Path%20traversed.png)
+![](Images/Parent-child_vector_map.png)
+
 
  A* Algorithm for Rigid Robot with Obstacles | Govind Ajith Kumar & Rajeshwar NS
 _________________________________________________________________________________________
