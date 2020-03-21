@@ -113,8 +113,6 @@ the following:
 
 > Zoomed in version of the quivers generated (MatplotLib)
 
-NOTE: All graphs are saved into the folder. They have been pre-uploaded into the submission folder, 
-however, they can be obtained again by running the same code.
 ---------------------------------------------------------------------------------------------
 
 
