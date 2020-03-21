@@ -2,4 +2,4 @@ This file is not a part of the course work. It is just the previous Dijkstra alg
 
 which has been converted to A* algorithm. 
 
-![](Images/a_star_project2.png)
+![](a_star_project2.png)
