@@ -9,11 +9,16 @@ GITHUB: https://github.com/govindak-umd/ENPM661/tree/master/Project%203/Project%
 YOUTUBE: https://www.youtube.com/watch?v=VBzvzb2vaYg&feature=emb_log
 
 
-![](Images/backtracked_img.jpg)
-![](Images/visited_img.jpg)
-![](Images/zoomed_vector_map.png)
-![](Images/Path%20traversed.png)
-![](Images/Parent-child_vector_map.png)
+![](Images/backtracked_img.jpg)<br/>
+<br/>
+![](Images/visited_img.jpg)<br/>
+<br/>
+![](Images/zoomed_vector_map.png)<br/>
+<br/>
+![](Images/Path%20traversed.png)<br/>
+<br/>
+![](Images/Parent-child_vector_map.png)<br/>
+<br/>
 
 
  A* Algorithm for Rigid Robot with Obstacles | Govind Ajith Kumar & Rajeshwar NS
