@@ -5,4 +5,6 @@ Project 1 - Solution of the 8 Puzzle problem using Brute Force Search Method
 Project 2 - Solving obstacle space by movement from start to goal using the Dijkstra’s Algorithm (for point and Rigid Robots)
 Project 2 Converted - Same as Project 2, But now implemented with A* Algorithm (for Rigid Robots only)
 Project 3 
-          Phase 2 - Solving obstacle space by movement from start to goal using the A* Algorithm (for Rigid Robots)
+          Phase 2 - Solving obstacle space by movement from start to goal using the A* Algorithm (for Rigid Robot)
+![](images/Path%20traversed.png)
+          
