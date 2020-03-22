@@ -5,9 +5,17 @@ ________________________________________________________________________________
 
 						SUBMISSION : March 20, 2020
 
-GITHUB: https://github.com/govindak-umd/ENPM661/tree/master/Project%203/Project%203%20Phase%202
-YOUTUBE: https://www.youtube.com/watch?v=VBzvzb2vaYg&feature=emb_log
+GITHUB: https://github.com/govindak-umd/ENPM661/tree/master/Project%203/Project%203%20Phase%202<br/>
 
+YOUTUBE: https://www.youtube.com/watch?v=VBzvzb2vaYg&feature=emb_log<br/>
+<br/>
+YOUTUBE: https://www.youtube.com/watch?v=_RSq41MF34w<br/>
+<br/>
+		##NOTE : Also attached a new folder, with an alternative method, where we found a much faster solution.###<br/>
+TIME TAKEN : < 1 minute <br/>
+You can find the alternative path video in attached submission as well as here...<br/>
+YOUTUBE: https://youtu.be/YeQo8LIU1ZE<br/>
+<br/>
 
 ![](Images/backtracked_img.jpg)<br/>
 <br/>
