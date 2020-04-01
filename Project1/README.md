@@ -20,6 +20,19 @@ Copy :: To work with copy function, to create duplicates
 ast :: Used for converting strings of lists, to pure lists
 
 -------------------------------------------------------------------------------------------
+TEST CASES - 
+#test cases as per rubric
+# s = [4,1,0,6,3,2,7,5,8]  - >  Solvable case
+# s = [2,5,3,1,0,6,4,7,8]  - >  Solvable case
+# s = [8,6,7,2,5,4,3,0,1]  - >  Solvable case
+# s = [6,4,7,8,5,0,3,2,1]  - >  Solvable case
+# s = [1,4,0,6,3,2,7,5,8]  - >  Unsolvable case
+# s = [8,7,6,2,5,4,3,0,1]  - >  Unsolvable case
+g = [1,2,3,4,5,6,7,8,0]    - >goal position
+---------------------------------------------------------------------------------------------
+
+
+
 
 The code takes in a starting position (s) and a goal position (g).
 
