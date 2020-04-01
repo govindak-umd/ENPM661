@@ -20,7 +20,12 @@ Copy :: To work with copy function, to create duplicates
 ast :: Used for converting strings of lists, to pure lists
 
 ------------------------------SOLVED SCREENSHOTS ------------------------------------------
-![](Project%201/Images/Solved_messages.PNG)<br/>
+![](Images/Solved_messages.PNG)<br/>
+<br/>
+<br/>
+<br/>
+![](Images/plot_path_image_correctness.PNG)<br/>
+<br/>
 <br/>
 <br/>
 -------------------------------------------------------------------------------------------
