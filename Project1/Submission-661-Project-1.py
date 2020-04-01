@@ -3,13 +3,8 @@
 
 # # Govind Ajith Kumar | ENPM661 | Project 1
 
-# In[1]:
 
-
-# github repo: 
-
-
-# In[2]:
+# github repo: https://github.com/govindak-umd/ENPM661/tree/master/Project1
 
 
 #Importing all the libraries
@@ -17,12 +12,8 @@ import numpy as np
 import copy
 import ast #for converting strings of lists, to pure lists
 
-
-# In[3]:
-
-
-def PrintMatrix(k):#num from 0 to 8 and position from 0 to 9
-    list_of_num=np.array([k]) #converting the input list to a 3 by 3 matrix
+def PrintMatrix(k):#converting the input list to a 3 by 3 matrix
+    list_of_num=np.array([k]) #to change format num from 0 to 8 and position from 0 to 9
     if len(list_of_num) ==9: #checking if there are 9 elements
         for i in range(0,len(list_of_num),3):
             k.append(list_of_num[i]) #appending to the first row
@@ -31,9 +22,6 @@ def PrintMatrix(k):#num from 0 to 8 and position from 0 to 9
             i+=1 #incrementing counter
     k=np.reshape(k,(3,3)) #reshaping to a 3 by 3 matrix
     return(k) #outputting the 3 by 3 matrix
-
-
-# In[4]:
 
 
 def BlankTileLocation(curr_node): #to find the position of zero in the matrix
@@ -46,10 +34,7 @@ def BlankTileLocation(curr_node): #to find the position of zero in the matrix
     return([row,col]) #returns the row and column number of zero
 
 
-# In[5]:
-
-
-def ActionMoveLeft(curr_node):
+def ActionMoveLeft(curr_node): #To move left
     r=BlankTileLocation(curr_node)[0]#row of zero
     c=BlankTileLocation(curr_node)[1]#column of zero
     if c!=0:
@@ -59,10 +44,7 @@ def ActionMoveLeft(curr_node):
         return(curr_node,False)#returning the current node and False, if Left is IMpossible
 
 
-# In[6]:
-
-
-def ActionMoveRight(curr_node):
+def ActionMoveRight(curr_node):#To move right
     r=BlankTileLocation(curr_node)[0]#row of zero
     c=BlankTileLocation(curr_node)[1]#column of zero
     if c!=2:
@@ -71,11 +53,7 @@ def ActionMoveRight(curr_node):
     else:
         return(curr_node,False)#returning the current node and False, if Right is IMpossible
 
-
-# In[7]:
-
-
-def ActionMoveUp(curr_node):
+def ActionMoveUp(curr_node):#To move up
     r=BlankTileLocation(curr_node)[0]#row of zero
     c=BlankTileLocation(curr_node)[1]#column of zero
     if r!=0:
@@ -84,11 +62,7 @@ def ActionMoveUp(curr_node):
     else:
         return(curr_node,False)#returning the current node and False, if Up is IMpossible
 
-
-# In[8]:
-
-
-def ActionMoveDown(curr_node):
+def ActionMoveDown(curr_node):#To move down
     r=BlankTileLocation(curr_node)[0]#row of zero
     c=BlankTileLocation(curr_node)[1]#column of zero
     if r!=2:
@@ -96,21 +70,13 @@ def ActionMoveDown(curr_node):
         return(curr_node,True)#returning the current node and True, if Down is possible
     else:
         return(curr_node,False)#returning the current node and False, if Down is IMpossible
-
-
-# In[9]:
-
-
+    
 #self made function to convert a 3 by 3 to a full list, to append into the global list
 def Mat2List(m):
     p=[]
     for i in m[0].tolist():
             p = p +i
     return p
-
-
-# In[10]:
-
 
 all_inversions = [] #empty list for the function below
 def check_solvability(s): #User defined Function to check the solvability of the given 8 puzzle problem 
@@ -133,9 +99,6 @@ def check_solvability(s): #User defined Function to check the solvability of the
         return (False) #returning False, if unsolvable
 
 
-# In[11]:
-
-
 #Enter the start and the goal positions here, in the form of a list
 #For example:
 #[[2,4,3
@@ -144,12 +107,14 @@ def check_solvability(s): #User defined Function to check the solvability of the
 #will be entered as : >>>> [2,4,3,7,8,0,6,1,5]
 # The same is done with the desired goal posiiton
 
-s = [2,8,3,1,6,4,7,0,5] #starting position
-g = [1,2,3,8,0,4,7,6,5] #goal position
-
-
-# In[12]:
-
+#test cases as per rubric
+# s = [4,1,0,6,3,2,7,5,8]
+# s = [2,5,3,1,0,6,4,7,8]
+# s = [8,6,7,2,5,4,3,0,1]
+s = [6,4,7,8,5,0,3,2,1]
+# s = [1,4,0,6,3,2,7,5,8] 
+# s = [8,7,6,2,5,4,3,0,1]
+g = [1,2,3,4,5,6,7,8,0] #goal position
 
 global_node=[] #All the nodes traversed throughout the journey by the Blank Tile
 parent_node = [] #Immedietely previous node. Child node of 'layer 1' is the Parent Node of 'layer 2'
@@ -159,13 +124,7 @@ parent_node.append([s])
 goal_found = 0
 
 
-# In[13]:
-
-
 val = check_solvability(s) #variable that checks the solvability of the matrix
-
-
-# In[14]:
 
 
 #The function to check when the goal is reached. 
@@ -183,9 +142,7 @@ def generate_path(s,g):
   
     elif s!=g:
         
-        if g == [1,2,3,4,5,6,7,8,0]:
-            
-            if (val == False):
+        if (val == False):
                 
                 print('This puzzle cannot be solved into that desired goal, since its UNSOLVABLE!')
                 
@@ -200,7 +157,7 @@ def generate_path(s,g):
                     
                 else:
                     
-                    print('The parent node is :>',c) #printing out the parent node
+                    # print('The parent node is :>',c) #printing out the parent node
                     parent_node.append([]) #appending an empty list to the parent node, so that the nodes are filled in subsequently
                     print('The count is  >>> ', count)
                     for i in c: #for ever element, inside every list of lists in the parent node
@@ -254,13 +211,7 @@ def generate_path(s,g):
                 count+=1 #incrementing the count variable
 
 
-# In[15]:
-
-
 generate_path(s,g) #calling the function with test cases, mentioned above
-
-
-# In[16]:
 
 
 #reversing and backtracking
@@ -278,9 +229,6 @@ back_track_list=back_track_list[::-1] #reversing the list
 back_track_list.append(val_unchanged) #appending the start point to the list, to show complete paths of traversal
 
 
-# In[17]:
-
-
 #Making the transpose of all the matrices, to run them in the programme
 transposed_list = [] #empty transposed list
 for i in back_track_list:
@@ -291,9 +239,6 @@ for i in back_track_list:
         for d in i:
             new.append(d)
     transposed_list.append(new) #appending to the blank list
-
-
-# In[18]:
 
 
 #Contains the path from the start to the goal, in theat order
@@ -337,9 +282,6 @@ F.close()
 c=0
 
 
-# In[19]:
-
-
 #Just for visulaization of the forward path
 print('START')
 print('\n')
@@ -360,10 +302,5 @@ for i in back_track_list:
     print(PrintMatrix(i))
     print('\n')
 print('START')
-
-
-# In[ ]:
-
-
 
 
