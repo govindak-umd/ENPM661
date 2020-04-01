@@ -19,6 +19,10 @@ Numpy :: for matrices and other associated numerical calculations.
 Copy :: To work with copy function, to create duplicates
 ast :: Used for converting strings of lists, to pure lists
 
+------------------------------SOLVED SCREENSHOTS ------------------------------------------
+![](Project%201/Images/Solved_messages.png)<br/>
+<br/>
+<br/>
 -------------------------------------------------------------------------------------------
 TEST CASES - 
 #test cases as per rubric
