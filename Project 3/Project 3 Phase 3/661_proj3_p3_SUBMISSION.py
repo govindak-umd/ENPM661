@@ -211,20 +211,20 @@ for pt in all_possible_int_points:
     # borders
 
     # left vertical border
-    if 0 < x < 10 + radius + clearance:
-        if 0 < y < 1020:
+    if 0 <=x <= 10 + radius + clearance:
+        if 0 <= y <= 1020:
             untraversable_points.append((x, y))
 
     # right vertical border
-    if 1010 - radius - clearance < x < 1020:
-        if 0 < y < 1020:
+    if 1010 - radius - clearance <= x <= 1020:
+        if 0 <= y <= 1020:
             untraversable_points.append((x, y))
     # bottom horizontal border
-    if 10 < x < 1010:
-        if 0 < y < 10 + radius + clearance:
+    if 10 <= x <= 1010:
+        if 0 <= y <= 10 + radius + clearance:
             untraversable_points.append((x, y))
     # top horizontal border
-    if 10 < x < 1010:
+    if 10 <= x <= 1010:
         if 1010 - radius - clearance < y < 1020:
             untraversable_points.append((x, y))
 
