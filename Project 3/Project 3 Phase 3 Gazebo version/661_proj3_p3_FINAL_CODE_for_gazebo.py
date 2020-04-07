@@ -6,8 +6,6 @@ import math
 import heapq
 import time
 import matplotlib.pyplot as plt
-import cv2
-import pygame
 
 # %%
 # wheel dia = 76mm
@@ -34,6 +32,7 @@ print(
 print('Range of x coordinates you can enter  =  0 - 1020')
 print('Range of y coordinates you can enter  =  0 - 1020')
 print('Please enter angles in multiples of 15 only, from 0 to 360. example : 15,30,225,etc . ')
+print('NOTE :  ENTER THE COORDINATE VALUES MULTIPLIED BY 100')
 x_start, y_start, start_orientation = input("Enter the x and y coordinate of the start and the initial orientation here, with a blank in between them (suggested : -420 -300 30) : > ").split()
 x_goal, y_goal =  input("Enter the x and y coordinate of the goal and the , in the form of blanks (suggested : 450 450) : > ").split()
 RPM_L, RPM_R = input("Enter the LEFT WHEEL RPM AND RIGHT WHEEL RPM  : > ").split()
@@ -47,7 +46,7 @@ time_run = int(input(('Please enter the time you wish to choose to run the robot
 start_orientation = int(start_orientation)
 RPM_L = int(RPM_L)
 RPM_R = int(RPM_R)
-print('Please wait while the map is being generated. Approximate wait time < 5 seconds . ')
+print('Please wait while the map is being generated. Approximate wait time < 8 seconds . ')
 
 # %%
 # function to round the point 5
@@ -248,94 +247,7 @@ for pt in all_possible_int_points:
             untraversable_points.append((x, y))
 
 #        POINTS FOR DRAWING THE GRAPH
-# all possible points in integer format
 
-
-# points to draw the map, without considering the radius and clearance of the robot. This works with
-# different sets of points as compared to the points created
-
-map_points = []
-for pt in all_possible_int_points:
-    x = pt[0]
-    y = pt[1]
-    if (x - 0) ** 2 + (y - 0) ** 2 <= (100) ** 2:
-        map_points.append((x, y))
-    
-    # circle shaped obstacle on top right
-    # for path traversal
-    if (x + 200) ** 2 + (y + 300) ** 2 <= (100 ) ** 2:
-        map_points.append((x, y))
-    
-    # circle shaped obstacle on bottom right
-    # for path traversal
-    if (x + 200) ** 2 + (y - 300) ** 2 <= (100 ) ** 2:
-        map_points.append((x, y))
-    
-    # circle shaped obstacle on bottom left
-    # for path traversal
-    if (x - 200) ** 2 + (y - 300) ** 2 <= (100 ) ** 2:
-        map_points.append((x, y))
-    
-    # borders
-    
-    # left vertical border
-    if -510 < x < -500 :
-        if -510 < y < 510:
-            map_points.append((x, y))
-    
-    # right vertical border
-    if 500 < x < 510:
-        if -510 < y < 510:
-            map_points.append((x, y))
-    # bottom horizontal border
-    if -510 < x < 510:
-        if -510 < y < -500 :
-            map_points.append((x, y))
-    # top horizontal border
-    if -510 < x < 510:
-        if 500  < y < 510:
-            map_points.append((x, y))
-    
-    # squares
-    
-    # left square
-    if -475  <= x <= -325 :
-        if -75  <= y <= 75 :
-            map_points.append((x, y))
-    
-    # right square
-    if 325  <= x <= 475 :
-        if -75 - radius - clearance <= y <= 75 :
-            map_points.append((x, y))
-    
-    # top left square (inverted to bottom right square)
-    if 125  <= x <= 275 :
-        if -375  <= y <= -225 :
-            map_points.append((x, y))
-# defining a blank canvas
-new_canvas = np.zeros((1020, 1020, 3), np.uint8)
-
-# for every point that belongs within the obstacle
-for c in map_points:  # change the name of the variable l
-    x = c[1]
-    x += 510
-    y = c[0]
-    y+=510
-    new_canvas[(x, y)] = [20, 125, 150]  # assigning a yellow coloured pixel
-
-# flipping the image for correct orientation
-new_canvas = np.flipud(new_canvas)
-# showing the obstacle map
-
-cv2.imshow(' < OBSTACLE SPACE MAP > ', new_canvas)
-cv2.imwrite('Obstacle_Space.jpg', new_canvas)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-print('Please wait while your solution is being calculated . ')
-print('Time taken on a high end Personal Computer ~ < 1 second')
-print('This will generate a map with solution, backtracked path, quiver plot and an animation too! ')
-print('!!! NOTE: Quiver plot will take an additional 10 seconds to calculate ')
 ##################function to check if any point is within the obstacle space#################
 # including the region covered by the robot radius and its clearance
 
@@ -406,16 +318,10 @@ def checkObstaclespace(point):
 
 # %%
 # showing what every child node of each parent nodes are connected to
-list_of_points_for_graph = []
-size_x, size_y = 1021, 1021
 
 
 def generateGraph(point, degree,
                   step_size=1):  # remember that this size_x and size_y are the sizes of the matrix, so not the end coordinates
-
-    global list_of_points_for_graph
-    global size_x
-    global size_y
     global RPM_R
     global RPM_L
 
@@ -469,11 +375,11 @@ def generateGraph(point, degree,
 # %%
 # function to backtrack so that the path from the goal to the end is obtained
 
-point_and_angle_list = []
+
 
 
 def BackTrack(backtrack_dict, goal, start):  # goal is the starting point now and start is the goal point now
-
+    point_and_angle_list = []
     # initializing the backtracked list
     back_track_list = []
     # appending the start variable to the back_track_list list
@@ -568,11 +474,6 @@ def a_star_Algorithm(start, goal):
             visited.add(curr_vert)
             # checking if the neighbour is the goal. If goal found reached
             if ((curr_vert[0] - goal[0]) ** 2 + (curr_vert[1] - goal[1]) ** 2 <= (1.5) ** 2):
-                print('^^^^^^^^^^^^^^')
-                print('^^^^^^^^^^^^^^')
-                print('GOAL REACHED')
-                print('^^^^^^^^^^^^^^')
-                print('^^^^^^^^^^^^^^')
                 print(curr_vert)
                 break
             # check whether node is in the obstacle space
@@ -598,11 +499,6 @@ def a_star_Algorithm(start, goal):
                         continue
                     # check if this neighbour is goal
                     if ((rounded_neighbour[0] - goal[0]) ** 2 + (rounded_neighbour[1] - goal[1]) ** 2 <= (1.5) ** 2):
-                        print('^^^^^^^^^^^^^^')
-                        print('^^^^^^^^^^^^^^')
-                        print('GOAL REACHED')
-                        print('^^^^^^^^^^^^^^')
-                        print('^^^^^^^^^^^^^^')
                         break_while = 1
                         break
                     ##check whether current neighbour node is in the obstacle space
@@ -650,129 +546,18 @@ def a_star_Algorithm(start, goal):
 
     return (curr_vert, backtracking)
     # return the last parent node and backtracked dictionary
-
-
-start_time = time.time()
 # calling the function to solve the obstacle space using A* Algorithm
 new_goal_rounded, backtracking_dict = a_star_Algorithm(start, goal)
-print("SOLVED in =", time.time() - start_time)
-
 # Backtracking back to the goal
 backtracked_final = BackTrack(backtracking_dict, start, new_goal_rounded)
 # printing the nodes from initial to the end
 print(backtracked_final)
-
-# %%
-
-# Scale the visited nodes and backtracked nodes for easy visualization
-new_list_visited = []
-for visited_node in list(visited):
-    new_x = 510 +visited_node[0] * 2
-    new_y = 510 +visited_node[1] * 2
-    new_list_visited.append((new_x, new_y))
-    
-new_backtracked = []
-for back in backtracked_final:
-    new_x_b = 510 +back[0] * 2
-    new_y_b = 510 +back[1] * 2
-    new_backtracked.append((new_x_b, new_y_b))
-
-# #defining a blank canvas
-new_canvas = np.zeros((2040, 2040, 3), np.uint8)
-
-# for every point that belongs within the obstacle
-for c in map_points:  # change the name of the variable l
-    x = c[1]
-    x += 510
-    y = c[0]
-    y+=510
-    new_canvas[(2*x, 2*y)] = [255, 255, 255]  # assigning a yellow coloured pixel
-
-# flipping the image for correct orientation
-new_canvas = np.flipud(new_canvas)
-# making a copy for backtracking purpose
-new_canvas_copy_backtrack = new_canvas.copy()
-# making a copy for showing the visited nodes on the obstacle space
-# can be used for the animation
-new_canvas_copy_visited = new_canvas.copy()
-
-# visited path
-for visit_path in new_list_visited:
-    # print(path)
-    x = 510 + int(visit_path[0])
-    y = 510 + int(visit_path[1])
-    # cv2.circle(new_canvas_copy_visited, (x, y), 5, [0, 255, 255], -1)
-    cv2.circle(new_canvas_copy_visited, (x, 2040 - y), 5, [0, 255, 255], -1)
-#     new_canvas_copy_visited[(2040-y,x)]=[255,255,255] #setting every backtracked pixel to white
-
-# showing the final backtracked path
-new_visited = cv2.resize(new_canvas_copy_visited, (1020, 1020))
-# showing the image
-new_canvas_copy_visited = cv2.resize(new_canvas_copy_visited, (1020, 1020))
-cv2.imshow('visited', new_canvas_copy_visited)
-cv2.imwrite('Visited_nodes.jpg', new_canvas_copy_visited)
-# saving the image
-# cv2.imwrite('visited_img.jpg',new_visited)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-# new_backtracked = g
-# backtracked path
-for path in new_backtracked:
-    # print(path)
-    x = 510 + int(path[0])
-    y = 510 + int(path[1])
-    cv2.circle(new_canvas_copy_backtrack, (x, 2040 - y), 5, [0, 0, 255], -1)
-#     new_canvas_copy_backtrack[(2040-y,x)]=[255,255,255] #setting every backtracked pixel to white
-# showing the final backtracked path
-# new_backtracked = cv2.resize(new_canvas_copy_backtrack,(600,400))
-
-new_canvas_copy_backtrack = cv2.resize(new_canvas_copy_backtrack, (1020, 1020))
-# showing the image
-cv2.imshow('backtracked image', new_canvas_copy_backtrack)
-cv2.imwrite('Backtracked_nodes.jpg', new_canvas_copy_backtrack)
-# saving the image
-# cv2.imwrite('backtracked_img.jpg',new_backtracked)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-# final quiver plot
-
-# fig, ax = plt.subplots()
-# RPM1 = RPM_L
-# RPM2 = RPM_R
-
-# actions = [[0, RPM1],
-#            [RPM1, 0],
-#            [RPM1, RPM1],
-#            [0, RPM2],
-#            [RPM2, 0],
-#            [RPM2, RPM2],
-#            [RPM1, RPM2],
-#            [RPM2, RPM1]]
-
-# count = 0
-# for point in point_and_angle_list:
-#     x = point[0][0]
-#     y = point[0][1]
-#     theta = point[1]
-#     for action in actions:
-#         X1 = plot_curve(x, y, theta, action[0], action[1])
-#     count += 1
-# plt.grid()
-# ax.set_aspect('equal')
-# plt.title('Vector - Path', fontsize=10)
-# plt.savefig('Quiver_Map.png', bbox_inches='tight')
-# plt.show()
-
-ros_map_points =[]
-for point in map_points:
-    ros_map_points.append((point[0]/100,point[1]/100))
     
 ros_visited_points = []
 for visit in list(visited):
      ros_visited_points.append((visit[0]/100,visit[1]/100))
-    
+
 ros_backtracked_points = []
 for backtr in backtracked_final:
     ros_backtracked_points.append((backtr[0]/100,backtr[1]/100))
+ros_backtracked_points = ros_backtracked_points[::-1]
