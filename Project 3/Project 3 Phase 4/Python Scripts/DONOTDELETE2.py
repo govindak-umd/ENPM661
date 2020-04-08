@@ -543,28 +543,10 @@ print translated_ros_backtracked_points
 
 from geometry_msgs.msg import Twist
 
-
-x = 0.0
-y= 0.0
-theta = 0.0
-def move_robot(msg):
-    global x
-    global y
-    global theta
-    global coordinates
-    x = msg.pose.pose.position.x
-    y = msg.pose.pose.position.y
-    rot_q = msg.pose.pose.orientation
-    coordinates = (x,y)
-    (roll,pitch,theta) = euler_from_quaternion ([rot_q.x,rot_q.y,rot_q.z,rot_q.w])
-
-sub = rospy.Subscriber("/odom",Odometry,move_robot)
-
-
 class GoForward():
     def __init__(self):
         # initiliaze
-        rospy.init_node('move', anonymous=False)
+        rospy.init_node('GoForward', anonymous=False)
 
         # tell user how to stop TurtleBot
         rospy.loginfo("To stop TurtleBot CTRL + C")
@@ -586,12 +568,10 @@ class GoForward():
         # let's turn at 0 radians/s
         move_cmd.angular.z = 0
 
-        start_time_straight = time.time()
         # as long as you haven't ctrl + c keeping doing...
-        while not rospy.is_shutdown() and (time.time() - start_time_straight < 0.5):
+        while not rospy.is_shutdown():
             # publish the velocity
             self.cmd_vel.publish(move_cmd)
-            print(x,y,'theta',theta)
         # wait for 0.1 seconds (10 HZ) and publish again
             r.sleep()
                         
@@ -607,7 +587,7 @@ class GoForward():
 class Turn():
     def __init__(self):
         # initiliaze
-        rospy.init_node('move', anonymous=False)
+        rospy.init_node('GoForward', anonymous=False)
 
         # tell user how to stop TurtleBot
         rospy.loginfo("To stop TurtleBot CTRL + C")
@@ -629,9 +609,8 @@ class Turn():
         # let's turn at 0 radians/s
         move_cmd.angular.z = 0.5
 
-        start_time_turn = time.time()
         # as long as you haven't ctrl + c keeping doing...
-        while not rospy.is_shutdown() and (time.time() - start_time_turn < 0.5):
+        while not rospy.is_shutdown():
             # publish the velocity
             self.cmd_vel.publish(move_cmd)
         # wait for 0.1 seconds (10 HZ) and publish again
@@ -651,35 +630,8 @@ class Turn():
 if __name__ == '__main__':
     try:
         # GoForward()
-        # Turn()
-
-        # for i in range(len(translated_ros_backtracked_points)-1):
-            # print('inside for loop')
-        index = 0
-        start_x = translated_ros_backtracked_points[index][0]
-        start_y = translated_ros_backtracked_points[index][1]
-        goal_x = translated_ros_backtracked_points[index + 1][0]
-        goal_y = translated_ros_backtracked_points[index + 1][1]
-        X = goal_x - x
-        Y = goal_y - y
-        angle_to_goal = math.degrees(atan2(Y,X))
-        # initial_angle = theta
-        print('theta for the start is > ', theta)
-
-        while math.degrees(theta)<angle_to_goal:
-            print('turning')
-            Turn()
-
-        print('Rotation completed')
-        goal_x = 3
-        goal_y = 3
-        while (x - goal_x)**2 + (y - goal_y)**2 > 0.2:
-            print('going forward')
-            GoForward()
-
-        print('Translation completed')
-
-
+        Turn()
     except:
         rospy.loginfo("GoForward node terminated.")
+
 
