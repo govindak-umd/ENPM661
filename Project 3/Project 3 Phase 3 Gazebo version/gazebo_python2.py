@@ -12,10 +12,11 @@ import time
 import matplotlib.pyplot as plt
 x_start, y_start, start_orientation = -420.0,-300.0,30.0
 x_goal, y_goal = 450.0,450.0
-RPM_L, RPM_R = 1.0,1.0
+RPM_L, RPM_R = 3.0,2.0
 radius = 1.0
-clearance = 1.0
+clearance = 4.0
 step_size = 1.0
+time_run = 1
 start = (int(x_start) + radius + clearance, int(y_start) + radius + clearance)
 goal = (int(x_goal) - radius - clearance, int(y_goal) - radius - clearance)
 time_run = 1
@@ -48,50 +49,15 @@ def EucledianDistance(a, b):
     return dist
 
 
-# In[4]:
-
-
-def plot_curve(X0, Y0, Theta0, UL, UR):
-    global time_run
-    t = 0
-    r = 0.5
-    L = 3.5
-    dt = 0.1
-    X1 = 0
-    Y1 = 0
-    dtheta = 0
-    Theta0 = 3.14 * Theta0 / 180
-    Theta1 = Theta0
-    while t < time_run:
-        t = t + dt
-        X0 = X0 + X1
-        Y0 = Y0 + Y1
-
-        dx = (r/2) * (UL + UR) * math.cos(Theta1) * dt
-        dy = (r/2) * (UL + UR) * math.sin(Theta1) * dt
-        dtheta = (r / L) * (UR - UL) * dt
-
-        X1 = X1 + dx
-        Y1 = Y1 + dy
-        Theta1 = Theta1 + 0.5 * dtheta
-
-        plt.quiver(X0, Y0, X1, Y1, units='xy', scale=1, color='r', width=1, headwidth=1, headlength=0)
-
-        Xn = X0 + X1
-        Yn = Y0 + Y1
-        Thetan = 180 * (Theta1) / 3.14
-    return Xn, Yn, Thetan
-
-
 # In[5]:
 
 
 def ActionMove(curr_node, orientation_facing, RPM_L, RPM_R, d=1.0, L=3.5, step_size=1.0):
-    time_run = 1
+    global time_run
     curr_start_x = curr_node[0]
     curr_start_y = curr_node[1]
     #r = d / 2
-    r = 2
+    r = 1
     # radius = dia / 2
     t = 0
 
@@ -527,4 +493,18 @@ ros_backtracked_points = []
 for backtr in backtracked_final:
     ros_backtracked_points.append((backtr[0]/100.0,backtr[1]/100.0))
 ros_backtracked_points = ros_backtracked_points[::-1]
+
+print ros_backtracked_points
+
+translated_ros_backtracked_points = []
+print 'changing val to new coordinate form'
+for (x,y) in ros_backtracked_points:
+	x = round(x+3.98,2)
+	y = round(y+2.85,2)
+	translated_ros_backtracked_points.append((x,y))
+
+#translated_ros_backtracked_points = translated_ros_backtracked_points[::-1]
+
+print translated_ros_backtracked_points
+
 
