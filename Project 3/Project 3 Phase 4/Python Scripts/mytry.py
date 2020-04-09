@@ -21,7 +21,7 @@ pi = 3.14
 
 x_start, y_start, start_orientation = -420.0,-300.0,30.0
 x_goal, y_goal = 450.0,450.0
-RPM_L, RPM_R = 3.0,2.0
+RPM_L, RPM_R = 3,3
 radius = 1.0
 clearance = 4.0
 step_size = 1.0
@@ -547,6 +547,7 @@ from geometry_msgs.msg import Twist
 x = 0.0
 y= 0.0
 theta = 0.0
+h = []
 def move_robot(msg):
     global x
     global y
@@ -562,12 +563,13 @@ sub = rospy.Subscriber("/odom",Odometry,move_robot)
 
 
 class GoForward():
+
     def __init__(self):
         # initiliaze
         rospy.init_node('move', anonymous=False)
 
         # tell user how to stop TurtleBot
-        rospy.loginfo("To stop TurtleBot CTRL + C")
+        # rospy.loginfo("To stop TurtleBot CTRL + C")
 
             # What function to call when you ctrl + c    
         rospy.on_shutdown(self.shutdown)
@@ -577,21 +579,20 @@ class GoForward():
         self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
          
         #TurtleBot will stop if we don't keep telling it to move.  How often should we tell it to move? 10 HZ
-        r = rospy.Rate(10);
+        r = rospy.Rate(5);
 
             # Twist is a datatype for velocity
         move_cmd = Twist()
         # let's go forward at 0.2 m/s
         move_cmd.linear.x = 0.2
         # let's turn at 0 radians/s
-        move_cmd.angular.z = 0
+        move_cmd.angular.z = 0.0
 
         start_time_straight = time.time()
         # as long as you haven't ctrl + c keeping doing...
-        while not rospy.is_shutdown() and (time.time() - start_time_straight < 0.5):
+        while not rospy.is_shutdown() and (time.time() - start_time_straight < 0.3):
             # publish the velocity
             self.cmd_vel.publish(move_cmd)
-            print(x,y,'theta',theta)
         # wait for 0.1 seconds (10 HZ) and publish again
             r.sleep()
                         
@@ -599,6 +600,7 @@ class GoForward():
     def shutdown(self):
         # stop turtlebot
         rospy.loginfo("Stop TurtleBot")
+        print h
     # a default Twist has linear.x of 0 and angular.z of 0.  So it'll stop TurtleBot
         self.cmd_vel.publish(Twist())
     # sleep just makes sure TurtleBot receives the stop command prior to shutting down the script
@@ -610,7 +612,7 @@ class Turn():
         rospy.init_node('move', anonymous=False)
 
         # tell user how to stop TurtleBot
-        rospy.loginfo("To stop TurtleBot CTRL + C")
+        # rospy.loginfo("To stop TurtleBot CTRL + C")
 
             # What function to call when you ctrl + c    
         rospy.on_shutdown(self.shutdown)
@@ -620,18 +622,18 @@ class Turn():
         self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
          
         #TurtleBot will stop if we don't keep telling it to move.  How often should we tell it to move? 10 HZ
-        r = rospy.Rate(10);
+        r = rospy.Rate(1);
 
             # Twist is a datatype for velocity
         move_cmd = Twist()
         # let's go forward at 0.2 m/s
         move_cmd.linear.x = 0.0
         # let's turn at 0 radians/s
-        move_cmd.angular.z = 0.5
+        move_cmd.angular.z = 0.2
 
         start_time_turn = time.time()
         # as long as you haven't ctrl + c keeping doing...
-        while not rospy.is_shutdown() and (time.time() - start_time_turn < 0.5):
+        while not rospy.is_shutdown() and (time.time() - start_time_turn < 0.1):
             # publish the velocity
             self.cmd_vel.publish(move_cmd)
         # wait for 0.1 seconds (10 HZ) and publish again
@@ -641,6 +643,7 @@ class Turn():
     def shutdown(self):
         # stop turtlebot
         rospy.loginfo("Stop TurtleBot")
+        print h
     # a default Twist has linear.x of 0 and angular.z of 0.  So it'll stop TurtleBot
         self.cmd_vel.publish(Twist())
     # sleep just makes sure TurtleBot receives the stop command prior to shutting down the script
@@ -650,35 +653,43 @@ class Turn():
 
 if __name__ == '__main__':
     try:
-        # GoForward()
-        # Turn()
 
-        # for i in range(len(translated_ros_backtracked_points)-1):
-            # print('inside for loop')
-        index = 0
-        start_x = translated_ros_backtracked_points[index][0]
-        start_y = translated_ros_backtracked_points[index][1]
-        goal_x = translated_ros_backtracked_points[index + 1][0]
-        goal_y = translated_ros_backtracked_points[index + 1][1]
-        X = goal_x - x
-        Y = goal_y - y
-        angle_to_goal = math.degrees(atan2(Y,X))
-        # initial_angle = theta
-        print('theta for the start is > ', theta)
-
-        while math.degrees(theta)<angle_to_goal:
-            print('turning')
-            Turn()
-
-        print('Rotation completed')
-        goal_x = 3
-        goal_y = 3
-        while (x - goal_x)**2 + (y - goal_y)**2 > 0.2:
-            print('going forward')
-            GoForward()
-
-        print('Translation completed')
-
+        for index in range(len(translated_ros_backtracked_points)-1):
+            start_x = translated_ros_backtracked_points[index][0]
+            start_y = translated_ros_backtracked_points[index][1]
+            goal_x = translated_ros_backtracked_points[index + 1][0]
+            goal_y = translated_ros_backtracked_points[index + 1][1]
+            # print 'index values',start_x,start_y,goal_x,goal_y
+            X = goal_x - round(x,2)
+            Y = goal_y - round(y,2)
+            # print 'X Y ', X, Y
+            angle_to_goal = math.degrees(atan2(Y,X))
+            # print 'math.degrees(theta)',math.degrees(theta),'angle_to_goal',angle_to_goal
+            while abs(math.degrees(theta)-angle_to_goal)<6:
+                # print('going to rotate : matching ',math.degrees(theta),'to',angle_to_goal)
+                print('turning')
+                Turn()
+                h.append((round(x,2),round(y,2)))
+            # print '------------------------------------'
+            # print('going to (',goal_x,goal_y,')')
+            # print '------------------------------------'
+            while (x - goal_x)**2 + (y - goal_y)**2 > 0.4:
+                print('WHIL - ED AGAIN')
+                if abs(math.degrees(theta)-abs(math.degrees(atan2(goal_y - round(y,2) ,goal_x - round(x,2)))))<6: 
+                    print('goal now is ', goal_x,',',goal_y)
+                    print(abs(math.degrees(atan2(goal_y - round(y,2) ,goal_x - round(x,2)))- math.degrees(theta)))
+                    if abs(math.degrees(theta)-abs(math.degrees(atan2(goal_y - round(y,2) ,goal_x - round(x,2))))) <6:
+                        print('translating')
+                        GoForward()
+                        print('angle to the goal ',goal_x,goal_y, 'is : ',angle_to_goal)
+                        h.append((round(x,2),round(y,2)))
+                else:
+                        # print('going to rotate : matching ',math.degrees(theta),'to',angle_to_goal)
+                    print('turning INSIDE LOOP')
+                    Turn()
+                    print 'reducing angle to ' , abs(math.degrees(theta)-abs(math.degrees(atan2(goal_y - round(y,2) ,goal_x - round(x,2)))))
+                    h.append((round(x,2),round(y,2)))
+        
 
     except:
         rospy.loginfo("GoForward node terminated.")
