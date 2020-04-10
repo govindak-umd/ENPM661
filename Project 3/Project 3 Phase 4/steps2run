@@ -1,0 +1,23 @@
+to run gotogoal ::
+
+
+
+test case : 1 >>
+
+catkin_make
+source ./devel/setup.bash 
+ROBOT_INITIAL_POSE="-x -4.30 -y -3.00" roslaunch tt_gazebo tt_launch.launch
+rosrun tt_gazebo code_1.py 
+
+
+
+test case : 2 >>
+
+catkin_make
+source ./devel/setup.bash 
+ROBOT_INITIAL_POSE="-x -4.30 -y -3.80" roslaunch tt_gazebo tt_launch.launch
+rosrun tt_gazebo code_2.py 
+
+
+
+
