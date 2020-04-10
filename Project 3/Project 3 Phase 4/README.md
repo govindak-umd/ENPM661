@@ -11,13 +11,15 @@ ________________________________________________________________________________
 	
 	GITHUB: 
 
-Initial repo with many old commits : 
+I	nitial repo with many old commits : 
 
 
-https://github.com/govindak-umd/ENPM661/tree/master/Project%203/Project%203%s20Phase%204
+	https://github.com/govindak-umd/ENPM661/tree/master/Project%203/Project%203%s20Phase%204
 
 
-Newly created repo just for the project:
+	Newly created repo just for the project:
+
+	https://github.com/govindak-umd/Turtlebot_ROS_Path_A_star/blob/master/README.md
 
 
 --------------
@@ -26,16 +28,13 @@ Newly created repo just for the project:
 
 
  
-Two videos have been linked :
+	Two videos have been linked :
 
-
-
-
-Case 1 -  PERTAINING TO CODE_1.py
-https://www.youtube.com/watch?v=KAAa5h_2YO0&t=1s
-
-Case 2 -  PERTAINING TO CODE_2.py
-https://www.youtube.com/watch?v=pjIAvvLftzQ
+	Case 1 -  PERTAINING TO CODE_1.py
+	https://www.youtube.com/watch?v=KAAa5h_2YO0&t=1s
+	
+	Case 2 -  PERTAINING TO CODE_2.py
+	https://www.youtube.com/watch?v=pjIAvvLftzQ
 
 --------------------------------------------------%%-------------------------------------------
 
