@@ -39,20 +39,20 @@ https://www.youtube.com/watch?v=pjIAvvLftzQ
 
 --------------------------------------------------%%-------------------------------------------
 
-Codes to execute for Code_1 : 
+	Codes to execute for Code_1 : 
 
-# catkin_make
-# source ./devel/setup.bash 
-# ROBOT_INITIAL_POSE="-x -4.30 -y -3.00" roslaunch tt_gazebo tt_launch.launch
-# rosrun tt_gazebo code_1.py 
+	# catkin_make
+	# source ./devel/setup.bash 
+	# ROBOT_INITIAL_POSE="-x -4.30 -y -3.00" roslaunch tt_gazebo tt_launch.launch
+	# rosrun tt_gazebo code_1.py 
 
 
-Codes to execute for Code_2 : 
+	Codes to execute for Code_2 : 
 
-# catkin_make
-# source ./devel/setup.bash 
-# ROBOT_INITIAL_POSE="-x -4.30 -y -3.80" roslaunch tt_gazebo tt_launch.launch
-# rosrun tt_gazebo code_2.py 
+	# catkin_make
+	# source ./devel/setup.bash 
+	# ROBOT_INITIAL_POSE="-x -4.30 -y -3.80" roslaunch tt_gazebo tt_launch.launch
+	# rosrun tt_gazebo code_2.py 
 
 _________________________________________________________________________________________
 Authors: 
@@ -65,7 +65,7 @@ University of Maryland
 College Park
 Maryland
 20740 USA
---------------------------
+
 Rajeshwar NS
 UID : 116921237
 
@@ -86,48 +86,49 @@ If you wish to change this value, please rerun the code after doing so.
 ALSO !! NOTE !!, the coordinates of the obstacle points have been multiplied by a factor of 100
 
 This ensures a clearer graph. Hence, please multiply by a factor of 100, before input. For example: 5.5 will be = 5.5*100 = 550
+
 Range of x coordinates you can enter  =  0 - 1020
 Range of y coordinates you can enter  =  0 - 1020
--------------
+
 Please wait while your solution is being calculated . 
 Time taken on a high end Personal Computer ~ < 1 second
---------------
+
 _________________________________________________________________________________________
 Libraries implemented and required to be installed for the code to execute:
 
 
 
------ROS------
-rospy :: for ros
-from nav_msgs.msg import Odometry
-from tf.transformations import euler_from_quaternion
-from geometry_msgs.msg import Point, Twist
-from math import atan2
-from std_msgs.msg import Int16
---------------
+	ROS
 
-Other Python Libraries:
+	rospy :: for ros
+	from nav_msgs.msg import Odometry
+	from tf.transformations import euler_from_quaternion
+	from geometry_msgs.msg import Point, Twist
+	from math import atan2
+	from std_msgs.msg import Int16
 
-numpy :: for matrices and other associated numerical calculations
-copy :: to copy
-math :: for all mathematical operations
-heapq :: for priority queue
-time :: for measuring the time
-cv2 :: for image related operations (OpenCV 4.xx)
-pygame :: For animations
-matplotlib:: To plot the graphs and see the path taken by the robot from the start to the goal node and the quiver plots
+	Other Python Libraries:
+
+	numpy :: for matrices and other associated numerical calculations
+	copy :: to copy
+	math :: for all mathematical operations
+	heapq :: for priority queue
+	time :: for measuring the time
+	cv2 :: for image related operations (OpenCV 4.xx)
+	pygame :: For animations
+	matplotlib:: To plot the graphs and see the path taken by the robot from the start to the goal node and the quiver plots
 
 			NOTE :::: PLEASE MAKE SURE THAT THE MATPLOTLIB GRAPHS CAN BE DISPLAYED, ESPECIALLY IF BEING RUN ON SPYDER or even any other IDE
 _________________________________________________________________________________________
 
 Code : Solves the obstacle map based on the A* Algorithm For Rigid Robot with a radius and clearance fro non- Holonomic Drive Robot
 
-The following inputs are required by the user:
+	The following inputs are required by the user:
 
--> x_start, y_start, start_orientation
--> x_goal, y_goal
--> RPM_L, RPM_R
--> clearance
+	-> x_start, y_start, start_orientation
+	-> x_goal, y_goal
+	-> RPM_L, RPM_R
+	-> clearance
 
 ---------------------------------------------------------------------------------------------
 Time for solution for the following inputs: 
