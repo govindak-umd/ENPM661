@@ -31,7 +31,7 @@ University of Maryland
 College Park
 Maryland
 20740 USA
---------------------------
+
 Rajeshwar NS
 UID : 116921237
 
@@ -40,7 +40,7 @@ University of Maryland
 College Park
 Maryland
 20740 USA
-_________________________________________________________________________________________
+
 Language: Python 3.7.x
 
 THIS PROGRAMME TAKES THE USER INPUTS BELOW AND SOLVES THE OBSTACLE SPACE VERY QUICKLY
