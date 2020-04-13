@@ -1,0 +1,6 @@
+# This is supplemental information
+
+The coordinates of the blocks are as follows :
+ 	
+1. x= 0.624727, y=1.181466, z=0.85
+2. x= 1.063386, y=0.368854, z=0.85
