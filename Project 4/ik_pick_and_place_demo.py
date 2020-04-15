@@ -34,7 +34,7 @@ import argparse
 import struct
 import sys
 import copy
-
+import time
 import rospy
 import rospkg
 
@@ -180,6 +180,17 @@ class PickAndPlace(object):
         self.gripper_open()
         # retract to clear object
         self._retract()
+    def simply_move(self, pose):
+        # servo above pose
+        self.gripper_close()
+
+        self._approach(pose)
+        # servo to pose
+        self._servo_to_pose(pose)
+        # retract to clear object
+        # self._retract()
+        # self.gripper_close()
+
 
 def load_gazebo_models(table_pose=Pose(position=Point(x=1.05, y=0.0, z=0.0)),
                        table_reference_frame="world",
@@ -209,7 +220,7 @@ def load_gazebo_models(table_pose=Pose(position=Point(x=1.05, y=0.0, z=0.0)),
     with open (model_path + "block/model2.urdf", "r") as block_file:
         block_xml2=block_file.read().replace('\n', '')
 
-	block_xml3 = ''
+    block_xml3 = ''
     with open (model_path + "block/model3.urdf", "r") as block_file:
         block_xml3=block_file.read().replace('\n', '')
 
@@ -326,27 +337,106 @@ def main():
                              z=0.00737916180073,
                              w=0.00486450832011)
     block_poses = list()
-    # The Pose of the block in its initial location.
-    # You may wish to replace these poses with estimates
-    # from a perception node.
+
+#first block is here
     block_poses.append(Pose(
-        position=Point(x=0.7, y=0.15, z=-0.129),
+        position=Point(x=0.77, y=0.0510, z=-0.170), #0.0265 changed to 0.0165
+        orientation=overhead_orientation))
+#first stop
+    block_poses.append(Pose(
+        position=Point(x=0.611, y=0.102, z=0.2), #0.0265 changed to 0.0165
+        orientation=overhead_orientation))
+#second stop
+    block_poses.append(Pose(
+        position=Point(x=0.412, y=0.309, z=0.2), #0.0265 changed to 0.0165
+        orientation=overhead_orientation))
+#placing
+    block_poses.append(Pose(
+        position=Point(x=0.1898577, y=0.8511811, z=-0.170), #0.0265 changed to 0.0165
+        orientation=overhead_orientation))
+
+# #picking the second block is here
+    block_poses.append(Pose(
+        position=Point(x=0.332, y=0.821, z=-0.170),
         orientation=overhead_orientation))
     # Feel free to add additional desired poses for the object.
     # Each additional pose will get its own pick and place.
-    block_poses.append(Pose(
-        position=Point(x=0.75, y=0.0, z=-0.129),
-        orientation=overhead_orientation))
     # Move to the desired starting angles
     pnp.move_to_start(starting_joint_angles)
     idx = 0
     while not rospy.is_shutdown():
-        print("\nPicking...")
+#PICK UP       
         pnp.pick(block_poses[idx])
-        print("\nPlacing...")
-        idx = (idx+1) % len(block_poses)
+        #pick up the first block
+        print '----------------'
+        print 'Red cube picked!'
+        print '----------------'
+#point1
+        idx = (1)# % len(block_poses)
+        pnp.simply_move(block_poses[idx])
+#point2
+        idx = (2) #% len(block_poses)
+        pnp.simply_move(block_poses[idx])
+# PLACE DOWN
+        idx = (3)# % len(block_poses)
         pnp.place(block_poses[idx])
+        print '----------------'
+        print 'Red cube placed!'
+        print '----------------'
+#pick up
+        idx = (4)# % len(block_poses)
+        pnp.pick(block_poses[idx])
+        print '----------------'
+        print 'White cube picked!'
+        print '----------------'
+#point 2
+        idx = (2)# % len(block_poses)
+        pnp.simply_move(block_poses[idx])
+#point 1
+        idx = (1) #% len(block_poses)
+        pnp.simply_move(block_poses[idx])
+#places down
+        idx = (0)# % len(block_poses)
+        pnp.place(block_poses[idx])
+        print '----------------'
+        print 'White cube placed!'
+        print '----------------'
+#point1
+        idx = (1) #% len(block_poses)
+        pnp.simply_move(block_poses[idx])
+        print '----------------'
+        print 'Task Complete!'
+        print '----------------'
+        break
     return 0
 
 if __name__ == '__main__':
     sys.exit(main())
+
+#pick up the first block
+
+#go to 
+#{'left_w0': -1.9610191053612303, 'left_w1': -0.39130158977169593, 'left_w2': 2.233642471603942, 'left_e0': -0.5915234984895469, 'left_e1': 1.6155294835628007, 'left_s0': 0.4206389332292275, 'left_s1': -0.7271358350918121}
+
+#go to
+#{'left_w0': -2.0501214394773193, 'left_w1': -0.355378824043284, 'left_w2': 2.286137969880706, 'left_e0': -0.5265071811964575, 'left_e1': 1.6171503619459462, 'left_s0': 0.37523343822834004, 'left_s1': -0.7519231383283744}
+
+#go to
+#{'left_w0': -1.7779841765120739, 'left_w1': -0.5095807589521648, 'left_w2': 2.174739647310927, 'left_e0': -0.7922760665702202, 'left_e1': 1.5949682414274124, 'left_s0': 0.544932544639182, 'left_s1': -0.6298376416174745}
+
+#DROP
+
+#pick up the next one
+
+#go to
+#{'left_w0': -1.3280297509854482, 'left_w1': -0.9107254288125348, 'left_w2': 2.190623837332259, 'left_e0': -1.2864145806663185, 'left_e1': 1.5416502454661867, 'left_s0': 0.7510491181869309, 'left_s1': -0.21537259002941944}
+
+
+#go to
+#{'left_w0': -1.391081280924858, 'left_w1': -0.8391476826900638, 'left_w2': 2.173405192842787, 'left_e0': -1.2092214253651243, 'left_e1': 1.5420723771455063, 'left_s0': 0.7278928494329576, 'left_s1': -0.2860480888367943}
+
+#DROP OFF AT 
+#{'left_w0': -1.5516028675133178, 'left_w1': -0.6892121573249039, 'left_w2': 2.1489083243993328, 'left_e0': -1.033530554487903, 'left_e1': 1.5618165114653615, 'left_s0': 0.6637570199835905, 'left_s1': -0.4523764050613869}
+
+
+
