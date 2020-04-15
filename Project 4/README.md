@@ -24,51 +24,52 @@ ________________________________________________________________________________
 
 Please run the following commands in order. Wherever (-----------) is drawn out, please open a new terminal.
 
-			To start ROS
-roscore 
+To start ROS
 ----------
-		To launch the Baxter Simulator
-cd ~/ros_ws
-catkin_make
-source ./devel/setup.bash
-./baxter.sh sim
-roslaunch baxter_gazebo baxter_world.launch
+		roscore 
+		
+To launch the Baxter Simulator
 ----------
-		To run the joint_trajectory_action_server fro RViz
-cd ~/ros_ws
-catkin_make
-source devel/setup.bash
-rosrun baxter_tools enable_robot.py -e
-rosrun baxter_interface joint_trajectory_action_server.py
-----------
-		To Run RViz
-cd ~/ros_ws
-catkin_make
-source devel/setup.bash
-roslaunch baxter_moveit_config demo_baxter.launch right_electric_gripper:=true left_electric_gripper:=true
-----------
-		To get the coordinate values of the end points of the gripper (here, left limb)
-cd ~/ros_ws
-catkin_make
-source devel/setup.bash
-rostopic echo /robot/limb/left/endpoint_state 
-----------
-		To run the Python code, titled ik_pick_and_place_demo.py
-cd ~/ros_ws
-catkin_make
-source devel/setup.bash
-rosrun baxter_sim_examples ik_pick_and_place_demo.py
------------
+		cd ~/ros_ws
+		catkin_make
+		source ./devel/setup.bash
+		./baxter.sh sim
+		roslaunch baxter_gazebo baxter_world.launch
 
-		To get the joint angles of the end effector open a new terminal and type : 
-cd ~/ros_ws
-catkin_make
-source devel/setup.bash
-rosrun baxter_examples ik_service_client.py -l left
+To run the joint_trajectory_action_server fro RViz
 ----------
-
-		To get the coordinate value fo any point in space on RViz, use the following echo command
-rostopic echo /clicked_point
+		cd ~/ros_ws
+		catkin_make
+		source devel/setup.bash
+		rosrun baxter_tools enable_robot.py -e
+		rosrun baxter_interface joint_trajectory_action_server.py
+To Run RViz
+----------
+		cd ~/ros_ws
+		catkin_make
+		source devel/setup.bash
+		roslaunch baxter_moveit_config demo_baxter.launch right_electric_gripper:=true left_electric_gripper:=true
+To get the coordinate values of the end points of the gripper (here, left limb)
+----------
+		cd ~/ros_ws
+		catkin_make
+		source devel/setup.bash
+		rostopic echo /robot/limb/left/endpoint_state 
+To run the Python code, titled ik_pick_and_place_demo.py
+----------
+		cd ~/ros_ws
+		catkin_make
+		source devel/setup.bash
+		rosrun baxter_sim_examples ik_pick_and_place_demo.py
+To get the joint angles of the end effector open a new terminal and type : 
+----------
+		cd ~/ros_ws
+		catkin_make
+		source devel/setup.bash
+		rosrun baxter_examples ik_service_client.py -l left
+To get the coordinate value fo any point in space on RViz, use the following echo command
+----------
+		rostopic echo /clicked_point
 
 
 _________________________________________________________________________________________
