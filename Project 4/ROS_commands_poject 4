@@ -1,0 +1,46 @@
+ROS_commands_poject 4
+
+
+Please run the following commands in order. Wherever (-----------) is drawn out, please open a new terminal.
+
+roscore 
+----------
+cd ~/ros_ws
+catkin_make
+source ./devel/setup.bash
+./baxter.sh sim
+roslaunch baxter_gazebo baxter_world.launch
+----------
+cd ~/ros_ws
+catkin_make
+source devel/setup.bash
+rosrun baxter_tools enable_robot.py -e
+rosrun baxter_interface joint_trajectory_action_server.py
+----------
+cd ~/ros_ws
+catkin_make
+source devel/setup.bash
+roslaunch baxter_moveit_config demo_baxter.launch right_electric_gripper:=true left_electric_gripper:=true
+----------
+cd ~/ros_ws
+catkin_make
+source devel/setup.bash
+rostopic echo /robot/limb/left/endpoint_state 
+----------
+cd ~/ros_ws
+catkin_make
+source devel/setup.bash
+rosrun baxter_sim_examples ik_pick_and_place_demo.py
+----------
+cd ~/ros_ws
+catkin_make
+source devel/setup.bash
+rosrun baxter_examples ik_service_client.py -l left
+----------
+rostopic echo /clicked_point
+
+
+
+
+
+
