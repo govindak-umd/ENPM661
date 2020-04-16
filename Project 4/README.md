@@ -18,7 +18,9 @@ ________________________________________________________________________________
 
 	YOUTUBE:
 
-	https://www.youtube.com/watch?v=jf0WXoY2Kxw&feature=youtu.be
+	https://youtu.be/jf0WXoY2Kxw
+	https://youtu.be/VjC5dWsRl9M
+	https://youtu.be/gSKFNhe4hHQ
 
 --------------------------------------------------%%-------------------------------------------
 
