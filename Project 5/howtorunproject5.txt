@@ -1,0 +1,69 @@
+
+GAZEBO LAUNCH:
+
+roslaunch turtlebot_teleop keyboard_teleop.launch 
+
+GMAPPING LAUNCH:
+
+roslaunch turtlebot_teleop gmapping_demo.launch 
+
+TO START RVIZ FOR GMAPPING :
+
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+
+TO KEYBOARD TELE-OP:
+
+roslaunch turtlebot_teleop keyboard_teleop.launch
+
+----move the map around and get the whole place SLAMMED-----
+
+TO SAVE THE MAP: 
+
+rosrun map_server map_saver -f mymapproject5
+
+READ THE YAML MAP AND PROVIDE IT, SO ANYONE CAN ACCESS IT: (map and map_metadata topics)
+
+rosrun map_server map_server willow.yaml
+
+TO GET MAP DATA FROM META_DATA AND OCCUPANCY DATA:
+
+rosservice call /static_map "{}"
+
+TO SEE WHAT EVERYTHING IS CONNECTED TO
+
+rosrun tf view_frames
+
+TO SEE THE CURRENT X, Y AND Z Points
+
+rostopic echo /odom/pose/pose/position
+
+tip:
+
+run the project 3 phase 3 file: (REMEMBER : 0,0 IS THE WALL)
+ROBOT_INITIAL_POSE="-x 1.00 -y 1.00" roslaunch tt_gazebo new_launch.launch
+start gmapping with :
+roslaunch turtlebot_gazebo gmapping_demo.launch 
+start teleop:
+roslaunch turtlebot_teleop keyboard_teleop.launch 
+start rviz with:
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+
+
+AFTER SAVING THE SLAM-med Map, 
+
+use the below code to load the .yaml file of the map
+rosrun map_server map_server mymapgood.yaml 
+
+Now use the code below to launch Rviz and see the map in it
+rosrun rviz rviz 
+
+NOTE: Remember to subscribe to /map topic over here after this in RViz
+
+
+
+
+launching amcl:
+roslaunch turtlebot_navigation amcl_demo.launch map_file:=/home/govind/catkin_ws/src/tt_gazebo/maps/mymapgood.yaml
+launching rviz after that using: 
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+
