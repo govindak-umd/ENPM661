@@ -38,6 +38,9 @@ TO SEE THE CURRENT X, Y AND Z Points
 rostopic echo /odom/pose/pose/position
 
 tip:
+-----------------------------------------------------------------------------
+BEFORE RUNNING THE SLAMMED MAP: (W/O custom parameters)
+
 
 run the project 3 phase 3 file: (REMEMBER : 0,0 IS THE WALL)
 ROBOT_INITIAL_POSE="-x 1.00 -y 1.00" roslaunch tt_gazebo new_launch.launch
@@ -47,8 +50,18 @@ start teleop:
 roslaunch turtlebot_teleop keyboard_teleop.launch 
 start rviz with:
 roslaunch turtlebot_rviz_launchers view_navigation.launch
+-----------------------------------------------------------------------------
+BEFORE RUNNING THE SLAMMED MAP: (WITH custom parameters)
 
 
+run the project 3 phase 3 file: (REMEMBER : 0,0 IS THE WALL)
+ROBOT_INITIAL_POSE="-x 1.00 -y 1.00" roslaunch tt_gazebo new_launch.launch
+start gmapping with :
+roslaunch tt_gazebo mygmapping.launch
+start teleop:
+roslaunch turtlebot_teleop keyboard_teleop.launch 
+
+-----------------------------------------------------------------------------
 AFTER SAVING THE SLAM-med Map, 
 
 use the below code to load the .yaml file of the map
@@ -58,12 +71,19 @@ Now use the code below to launch Rviz and see the map in it
 rosrun rviz rviz 
 
 NOTE: Remember to subscribe to /map topic over here after this in RViz
-
-
-
-
-launching amcl:
+-----------------------------------------------------------------------------
+COST MAP VIEWING: (LOCAL/GLOBAL)
+start gazebo:
+ROBOT_INITIAL_POSE="-x 1.00 -y 1.00" roslaunch tt_gazebo new_launch.launch
+launching amcl: (from maps folder)
 roslaunch turtlebot_navigation amcl_demo.launch map_file:=/home/govind/catkin_ws/src/tt_gazebo/maps/mymapgood.yaml
 launching rviz after that using: 
 roslaunch turtlebot_rviz_launchers view_navigation.launch
+-----------------------------------------------------------------------------
+
+using /scan topic to get the scanned data
+
+continue from : https://www.theconstructsim.com/read-laserscan-data/
+
+SLAM parameters: http://docs.ros.org/hydro/api/gmapping/html/index.html
 
