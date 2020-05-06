@@ -18,3 +18,5 @@ Within the controller.py, the wheels can be adjusted based on the position and h
 a maximum angle of 28 degrees.
 
 The vehicle will remain stationary, until the vel variable is changed.
+
+The map has been saved using SLAM as well, and a image of that has been included as well.
