@@ -9,7 +9,7 @@ The rviz launch has been terminated because of errors"
 
 Hence, to launch RVIZ, run 
 
-		roslaunch toycar gazebo.launch
+		roslaunch toycar display.launch
 
 The python script called controller.py has been integrated to gazebo.launch itself. 
 
