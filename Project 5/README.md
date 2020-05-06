@@ -1,7 +1,7 @@
 The python solutions can be seen below:
 
     Original Map for Path Planning
-![](Images/priginal_map.png)<br/>
+![](Images/original_map.png)<br/>
 <br/>
 
     RRT Solution
