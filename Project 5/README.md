@@ -5,7 +5,9 @@ Links to Youtube Video for Path Planning
 ---
         https://youtu.be/q5-7wXwrHNc
         https://youtu.be/8_35XjTT8T8
-    Original Map for Path Planning
+----
+
+        Original Map for Path Planning
 ![](Images/original_map.png)<br/>
 <br/>
 
