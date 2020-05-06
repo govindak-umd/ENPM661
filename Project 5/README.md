@@ -14,6 +14,7 @@ Links to Youtube Video for Path Planning
     RRT Solution
 ![](Images/RRT.png)<br/>
 <br/>
+
     RRT* Solution
 ![](Images/rrt_star.png)<br/>
 <br/>
