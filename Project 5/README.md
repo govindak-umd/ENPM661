@@ -1,4 +1,3 @@
-The python solutions can be seen below:
 To run the workspace
 ----
 
