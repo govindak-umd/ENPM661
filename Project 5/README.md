@@ -1,5 +1,17 @@
 The python solutions can be seen below:
+To run the workspace
+----
 
+                Clone proj_5
+                cd ..
+                catkin_make
+                source ./devel/setup.bash
+                (open new tab)
+                roscore
+                (open new tab)
+                roslaunch rrt_package rrtsimulationkobuki.launch 
+                (open new tab)
+                roslaunch rrt_exploration single.launch 
 
 Links to Youtube Video for Path Planning
 ---
