@@ -23,3 +23,6 @@ The map has been saved using SLAM as well, and a image of that has been included
 The tf frames have been included under the src folder as well and can be seen by navigating to the folder and typing 
 
 		evince frames.pdf
+	
+![](Project%202/Images/competition_arena.png)<br/>
+<br/>
