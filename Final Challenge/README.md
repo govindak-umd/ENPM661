@@ -24,5 +24,5 @@ The tf frames have been included under the src folder as well and can be seen by
 
 		evince frames.pdf
 	
-![](Project%202/Images/competition_arena.png)<br/>
+![](competition_arena.png)<br/>
 <br/>
